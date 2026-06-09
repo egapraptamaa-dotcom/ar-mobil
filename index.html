@@ -1,53 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
   <head>
     <meta charset="utf-8">
-    <title>Sistem Informasi WebAR Mobil - Interaktif</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Sistem Informasi WebAR Tanpa Marker - Ega</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Memanggil A-Frame untuk visual 3D -->
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <!-- Memanggil AR.js untuk fitur Augmented Reality (Kamera & Deteksi Lantai) -->
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    
+    <style>
+      body { margin: 0; padding: 0; overflow: hidden; background-color: #000; }
+      /* Membuat tampilan AR memenuhi seluruh layar HP */
+      model-viewer {
+        width: 100vw;
+        height: 100vh;
+      }
+      /* Desain tombol AR yang muncul di layar HP */
+      #ar-button {
+        background-color: #3498db;
+        border-radius: 4px;
+        border: none;
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        padding: 12px 24px;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        cursor: pointer;
+      }
+    </style>
   </head>
+  <body>
 
-  <body style="margin: 0px; overflow: hidden;">
-    
-    <!-- Menginisiasi sistem AR menggunakan kamera belakang HP -->
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    <model-viewer 
+      src="https://raw.githack.com/KhronosGroup/glTF-Sample-Models/master/2.0/ToyCar/glTF-Embedded/ToyCar.gltf"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      camera-controls
+      touch-action="none"
+      shadow-intensity="1"
+      auto-rotate>
       
-      <!-- Tempat Manajemen/Load Aset 3D secara Online -->
-      <a-assets>
-        <!-- Mengambil aset model 3D Mobil Resmi dari Github Khronos Group -->
-        <a-asset-item id="mobil-3d" src="https://raw.githack.com/KhronosGroup/glTF-Sample-Models/master/2.0/ToyCar/glTF-Embedded/ToyCar.gltf"></a-asset-item>
-      </a-assets>
+      <button slot="ar-button" id="ar-button">
+        TAMPILKAN MOBIL DI LANTAI
+      </button>
+      
+    </model-viewer>
 
-      <!-- Menggunakan Marker Hiro sebagai jangkar di lantai -->
-      <a-marker preset="hiro">
-        
-        <!-- Menampilkan Model 3D Mobil -->
-        <!-- scale="15 15 15" disesuaikan agar ukuran mobil terlihat ideal di atas kertas -->
-        <a-entity gltf-model="#mobil-3d" 
-                  position="0 0 0" 
-                  scale="15 15 15" 
-                  rotation="0 0 0"
-                  animation="property: rotation; to: 0 360 0; loop: true; dur: 8000">
-        </a-entity>
-
-        <!-- Teks Informasi Melayang di Atas Mobil -->
-        <a-text value="MODEL 3D MOBIL INTERAKTIF" 
-                position="0 1.2 0" 
-                color="#3498db" 
-                align="center" 
-                width="4"
-                side="double">
-        </a-text>
-
-      </a-marker>
-
-      <!-- Kamera Pengguna -->
-      <a-entity camera></a-entity>
-
-    </a-scene>
   </body>
 </html>
