@@ -1,41 +1,88 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
+  <head>
     <meta charset="utf-8">
     <title>Sistem Informasi WebAR - Ega</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    
     <style>
-        body { margin: 0; overflow: hidden; }
-        #info-text {
-            position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(0,0,0,0.8); color: white; padding: 12px 24px;
-            font-family: Arial, sans-serif; border-radius: 20px; z-index: 999; 
-            text-align: center; font-size: 14px; font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
+      /* Desain Background Web */
+      body { 
+        margin: 0; 
+        padding: 0; 
+        overflow: hidden; 
+        background-color: #121212; 
+        font-family: Arial, sans-serif;
+      }
+      
+      /* Pembungkus komponen 3D */
+      model-viewer {
+        width: 100vw;
+        height: 100vh;
+      }
+      
+      /* Tombol Kustom "TAMPILKAN DI LANTAI" */
+      #ar-button {
+        background-color: #2980b9;
+        border-radius: 8px;
+        border: none;
+        position: absolute;
+        bottom: 100px; /* Posisi pas di atas navigasi HP, gampang ditekan */
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        padding: 14px 28px;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        cursor: pointer;
+        z-index: 999;
+        transition: background-color 0.3s;
+      }
+
+      #ar-button:active {
+        background-color: #1c5982;
+      }
+
+      /* Teks Panduan di Atas Layar */
+      .instruksi {
+        position: absolute;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-size: 14px;
+        text-align: center;
+        pointer-events: none;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
 
-    <div id="info-text">AR TANPA MARKER AKTIF<br>Objek otomatis muncul di depan kamera</div>
+    <div class="instruksi">
+      <b>LIHAT OBJEK 3D</b><br>Geser layar untuk memutar objek
+    </div>
 
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-        
-        <a-assets>
-            <a-asset-item id="astronaut" src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"></a-asset-item>
-        </a-assets>
+    <model-viewer 
+      src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+      camera-controls
+      touch-action="none"
+      shadow-intensity="1"
+      auto-rotate>
+      
+      <button slot="ar-button" id="ar-button">
+        TAMPILKAN DI LANTAI
+      </button>
+      
+    </model-viewer>
 
-        <a-entity 
-            gltf-model="#astronaut" 
-            position="0 -0.5 -2" 
-            scale="0.4 0.4 0.4"
-            animation="property: rotation; to: 0 360 0; loop: true; dur: 12000">
-        </a-entity>
-
-        <a-entity camera></a-entity>
-    </a-scene>
-
-</body>
+  </body>
 </html>
