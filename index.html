@@ -8,7 +8,6 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     
     <style>
-      /* Desain Background Web */
       body { 
         margin: 0; 
         padding: 0; 
@@ -17,19 +16,18 @@
         font-family: Arial, sans-serif;
       }
       
-      /* Pembungkus komponen 3D */
       model-viewer {
         width: 100vw;
         height: 100vh;
       }
       
-      /* Tombol Kustom "TAMPILKAN DI LANTAI" */
+      /* Tombol Biru di bawah Objek 3D */
       #ar-button {
         background-color: #2980b9;
         border-radius: 8px;
         border: none;
         position: absolute;
-        bottom: 100px; /* Posisi pas di atas navigasi HP, gampang ditekan */
+        bottom: 100px; 
         left: 50%;
         transform: translateX(-50%);
         color: white;
@@ -39,14 +37,8 @@
         box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         cursor: pointer;
         z-index: 999;
-        transition: background-color 0.3s;
       }
 
-      #ar-button:active {
-        background-color: #1c5982;
-      }
-
-      /* Teks Panduan di Atas Layar */
       .instruksi {
         position: absolute;
         top: 30px;
@@ -59,20 +51,21 @@
         font-size: 14px;
         text-align: center;
         pointer-events: none;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        width: 80%;
+        max-width: 300px;
       }
     </style>
   </head>
   <body>
 
     <div class="instruksi">
-      <b>LIHAT OBJEK 3D</b><br>Geser layar untuk memutar objek
+      <b>LIHAT OBJEK 3D</b><br>Geser layar untuk memutar astronot
     </div>
 
     <model-viewer 
       src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
       ar
-      ar-modes="webxr scene-viewer quick-look"
+      ar-modes="scene-viewer quick-look"
       camera-controls
       touch-action="none"
       shadow-intensity="1"
