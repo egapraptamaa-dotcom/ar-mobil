@@ -2,26 +2,26 @@
 <html lang="id">
   <head>
     <meta charset="utf-8">
-    <title>Sistem Informasi WebAR Tanpa Marker - Ega</title>
+    <title>Sistem Informasi WebAR - Ega</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     
     <style>
-      body { margin: 0; padding: 0; overflow: hidden; background-color: #000; }
+      body { margin: 0; padding: 0; overflow: hidden; background-color: #1a1a1a; }
       
       model-viewer {
         width: 100vw;
-        height: 90vh; /* Dikurangi biar gak kemakan layar bawah HP */
+        height: 100vh;
       }
       
-      /* Tombol AR dinaikkan posisinya dan diperjelas */
+      /* Tombol digeser agak ke atas biar gak kepotong navigasi bawah HP */
       #ar-button {
         background-color: #2980b9;
         border-radius: 8px;
         border: none;
         position: absolute;
-        bottom: 80px; /* Posisi dinaikkan biar gak kepotong navigasi HP */
+        bottom: 120px; /* Posisi aman dari tombol navigasi HP */
         left: 50%;
         transform: translateX(-50%);
         color: white;
@@ -31,14 +31,14 @@
         font-weight: bold;
         box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         cursor: pointer;
-        z-index: 999; /* Memastikan tombol paling depan */
+        z-index: 999;
       }
     </style>
   </head>
   <body>
 
     <model-viewer 
-      src="https://raw.githack.com/KhronosGroup/glTF-Sample-Models/master/2.0/ToyCar/glTF-Embedded/ToyCar.gltf"
+      src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
       ar
       ar-modes="webxr scene-viewer quick-look"
       camera-controls
@@ -47,7 +47,7 @@
       auto-rotate>
       
       <button slot="ar-button" id="ar-button">
-        TAMPILKAN MOBIL DI LANTAI
+        TAMPILKAN OBJEK DI LANTAI
       </button>
       
     </model-viewer>
