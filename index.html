@@ -21,7 +21,7 @@
         height: 100vh;
       }
       
-      /* Desain Tombol Biru Tengah Bawah */
+      /* Tombol Tampilkan di Lantai */
       #ar-button {
         background-color: #2980b9;
         border-radius: 8px;
@@ -66,10 +66,11 @@
     <model-viewer 
       src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
       ar
-      ar-modes="webxr"
+      ar-modes="webxr quick-look scene-viewer"
       camera-controls
       touch-action="none"
-      shadow-intensity="1"
+      shadow-intensity="2"
+      shadow-softness="0"
       ar-placement="floor"
       auto-rotate>
       
