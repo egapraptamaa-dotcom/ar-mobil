@@ -78,5 +78,14 @@
       
     </model-viewer>
 
+    <script>
+      const modelViewer = document.querySelector('model-viewer');
+      modelViewer.addEventListener('ar-status', (event) => {
+        if(event.detail.status === 'failed') {
+          alert("Maaf, AR tidak didukung di perangkat ini.");
+        }
+      });
+    </script>
+
   </body>
 </html>
